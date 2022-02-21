@@ -3,6 +3,11 @@ package back.conjugaison.conjugate;
 import back.conjugaison.helper.Helper;
 
 public abstract class Verb implements IConjugate{
+
+    protected static String ENDING_1ST_PERSON_PLURAL = "ons";
+    protected static String ENDING_2ND_PERSON_PLURAL = "ez";
+    protected static String ENDING_3RD_PERSON_PLURAL = "ent";
+
     private String root;
 
     protected String end = "";
@@ -15,15 +20,31 @@ public abstract class Verb implements IConjugate{
     }
 
     protected abstract String ending1stPersonSingular();
+    protected abstract String ending2ndPersonSingular();
+    protected abstract String ending3rdPersonSingular();
     protected abstract String ending1stPersonPlural();
+    protected abstract String ending2ndPersonPlural();
+    protected abstract String ending3rdPersonPlural();
     protected abstract String endingPastParticipate();
 
     public String conjugate1stPersonSingular(){
         return this.getJe(this.root.charAt(0)) + this.root + this.ending1stPersonSingular();
     }
+    public String conjugate2ndPersonSingular(){
+        return "Tu " + this.root + this.ending2ndPersonSingular();
+    }
+    public String conjugate3rdPersonSingular(){
+        return "Il " + this.root + this.ending3rdPersonSingular();
+    }
 
     public String conjugate1stPersonPlural(){
         return "Nous " + this.root + this.ending1stPersonPlural();
+    }
+    public String conjugate2ndPersonPlural(){
+        return "Vous " + this.root + this.ending2ndPersonPlural();
+    }
+    public String conjugate3rdPersonPlural(){
+        return "Ils " + this.root + this.ending3rdPersonPlural();
     }
 
     public String conjugatePastParticipate(){

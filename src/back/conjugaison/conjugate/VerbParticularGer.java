@@ -11,7 +11,7 @@ public class VerbParticularGer extends Verb1stGroup {
     }
 
     @Override
-    public String ending1stPersonPlural() {
+    protected String ending1stPersonPlural() {
         return "eons";
     }
 }

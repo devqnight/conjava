@@ -8,7 +8,8 @@ public class Verb3rdGroupIndre extends Verb {
         this.end = END;
     }
     
-    private String endingPlural(){
+    @Override
+    protected String endingPlural(){
         return "ign";
     }
 
@@ -27,19 +28,19 @@ public class Verb3rdGroupIndre extends Verb {
         return "int";
     }
 
-    @Override
-    public String ending1stPersonPlural() {
-        return endingPlural() + Verb.ENDING_1ST_PERSON_PLURAL;
-    }
+    //@Override
+    //public String ending1stPersonPlural() {
+    //    return endingPlural() + ENDING_1ST_PERSON_PLURAL;
+    //}
 
     @Override
     protected String ending2ndPersonPlural() {
-        return endingPlural() + Verb.ENDING_2ND_PERSON_PLURAL;
+        return endingPlural() + ENDING_2ND_PERSON_PLURAL;
     }
 
     @Override
     protected String ending3rdPersonPlural() {
-        return endingPlural() + Verb.ENDING_3RD_PERSON_PLURAL;
+        return endingPlural() + ENDING_3RD_PERSON_PLURAL;
     }
 
     @Override

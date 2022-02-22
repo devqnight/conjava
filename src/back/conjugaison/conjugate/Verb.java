@@ -4,9 +4,9 @@ import back.conjugaison.helper.Helper;
 
 public abstract class Verb implements IConjugate{
 
-    protected static String ENDING_1ST_PERSON_PLURAL = "ons";
-    protected static String ENDING_2ND_PERSON_PLURAL = "ez";
-    protected static String ENDING_3RD_PERSON_PLURAL = "ent";
+    protected String ENDING_1ST_PERSON_PLURAL = "ons";
+    protected final String ENDING_2ND_PERSON_PLURAL = "ez";
+    protected final String ENDING_3RD_PERSON_PLURAL = "ent";
 
     private String root;
 
@@ -22,7 +22,8 @@ public abstract class Verb implements IConjugate{
     protected abstract String ending1stPersonSingular();
     protected abstract String ending2ndPersonSingular();
     protected abstract String ending3rdPersonSingular();
-    protected abstract String ending1stPersonPlural();
+    protected abstract String endingPlural();
+    //protected abstract String ending1stPersonPlural();
     protected abstract String ending2ndPersonPlural();
     protected abstract String ending3rdPersonPlural();
     protected abstract String endingPastParticipate();
@@ -38,7 +39,7 @@ public abstract class Verb implements IConjugate{
     }
 
     public String conjugate1stPersonPlural(){
-        return "Nous " + this.root + this.ending1stPersonPlural();
+        return "Nous " + this.root + this.endingPlural() + ENDING_1ST_PERSON_PLURAL;//this.ending1stPersonPlural();
     }
     public String conjugate2ndPersonPlural(){
         return "Vous " + this.root + this.ending2ndPersonPlural();
@@ -52,7 +53,7 @@ public abstract class Verb implements IConjugate{
     }
 
     public String conjugatePresentParticipate() {
-        return "En " + this.root + this.ending1stPersonPlural().replace("ons", "ant");
+        return "En " + this.root + this.endingPlural() + ENDING_1ST_PERSON_PLURAL.replace("ons", "ant");
     }
 
     public String getRoot() {

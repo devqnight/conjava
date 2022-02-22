@@ -10,6 +10,11 @@ public class Verb2ndGroup extends Verb{
     }
 
     @Override
+    protected String endingPlural(){
+      return "iss";
+    }
+
+    @Override
     protected String ending1stPersonSingular() {
         return "is";
     }
@@ -24,19 +29,19 @@ public class Verb2ndGroup extends Verb{
         return "it";
     }
 
-    @Override
-    protected String ending1stPersonPlural() {
-        return "iss" + Verb.ENDING_1ST_PERSON_PLURAL;
-    }
+    //@Override
+    //protected String ending1stPersonPlural() {
+    //    return endingPlural() + ENDING_1ST_PERSON_PLURAL;
+    //}
 
     @Override
     protected String ending2ndPersonPlural() {
-        return "iss" + Verb.ENDING_2ND_PERSON_PLURAL;
+        return endingPlural() + ENDING_2ND_PERSON_PLURAL;
     }
 
     @Override
     protected String ending3rdPersonPlural() {
-        return "iss" + Verb.ENDING_3RD_PERSON_PLURAL;
+        return endingPlural() + ENDING_3RD_PERSON_PLURAL;
     }
 
     @Override

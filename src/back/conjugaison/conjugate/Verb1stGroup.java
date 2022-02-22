@@ -10,6 +10,11 @@ public class Verb1stGroup extends Verb {
     }
 
     @Override
+    protected String endingPlural() {
+        return "";
+    }
+
+    @Override
     protected String ending1stPersonSingular() {
         return "e";
     }
@@ -24,26 +29,23 @@ public class Verb1stGroup extends Verb {
         return this.ending1stPersonSingular();
     }
 
-    @Override
-    protected String ending1stPersonPlural() {
-        return Verb.ENDING_1ST_PERSON_PLURAL;
-    }
+    //@Override
+    //protected String ending1stPersonPlural() {
+    //    return ENDING_1ST_PERSON_PLURAL;
+    //}
 
     @Override
     protected String ending2ndPersonPlural() {
-        return Verb.ENDING_2ND_PERSON_PLURAL;
+        return ENDING_2ND_PERSON_PLURAL;
     }
 
     @Override
     protected String ending3rdPersonPlural() {
-        return Verb.ENDING_3RD_PERSON_PLURAL;
+        return ENDING_3RD_PERSON_PLURAL;
     }
 
     @Override
     protected String endingPastParticipate() {
         return "é";
     }
-
-
-    
 }

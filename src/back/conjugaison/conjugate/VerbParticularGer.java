@@ -8,10 +8,11 @@ public class VerbParticularGer extends Verb1stGroup {
         super(verb);
         if(!this.getRoot().endsWith("g"))
             throw new IllegalArgumentException(verb+ " is not a 'ger' verb");
+        this.ENDING_1ST_PERSON_PLURAL = "eons";
     }
 
-    @Override
-    public String ending1stPersonPlural() {
-        return "eons";
-    }
+    //@Override
+    //protected String ending1stPersonPlural() {
+    //    return "eons";
+    //}
 }

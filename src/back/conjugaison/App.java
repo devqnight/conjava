@@ -55,11 +55,15 @@ public class App {
 
         VerbList.getInstance().verbList = verbObjList;
         System.out.println(VerbList.getInstance().conjugate1stPersonSingular());
+        System.out.println(VerbList.getInstance().conjugate2ndPersonSingular());
+        System.out.println(VerbList.getInstance().conjugate3rdPersonSingular());
         System.out.println(VerbList.getInstance().conjugate1stPersonPlural());
+        System.out.println(VerbList.getInstance().conjugate2ndPersonPlural());
+        System.out.println(VerbList.getInstance().conjugate3rdPersonPlural());
         System.out.println(VerbList.getInstance().conjugatePresentParticipate());
         System.out.println(VerbList.getInstance().conjugatePastParticipate());
 
-        Verb verb = finder.findGroup("téléphoner");
-        System.out.println(verb.conjugate1stPersonSingular());
+        Verb verb = finder.findGroup("transmettre");
+        System.out.println(verb.conjugate2ndPersonPlural());
     }
 }

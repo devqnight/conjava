@@ -9,18 +9,43 @@ public class Verb3rdGroupAitre extends Verb {
     }
 
     @Override
+    protected String endingPlural(){
+        return "aiss";
+    }
+
+    @Override
     protected String ending1stPersonSingular() {
         return "ais";
     }
 
     @Override
-    protected String ending1stPersonPlural() {
-        return "aissons";
+    protected String ending2ndPersonSingular() {
+        return ending1stPersonSingular();
     }
 
+    @Override
+    protected String ending3rdPersonSingular() {
+        return "âit";
+    }
+
+    //@Override
+    //protected String ending1stPersonPlural() {
+    //    return endingPlural() + ENDING_1ST_PERSON_PLURAL;
+    //}
+
+    @Override
+    protected String ending2ndPersonPlural() {
+        return endingPlural() + ENDING_2ND_PERSON_PLURAL;
+    }
+
+    @Override
+    protected String ending3rdPersonPlural() {
+        return endingPlural() + ENDING_3RD_PERSON_PLURAL;
+    }
+    
     @Override
     protected String endingPastParticipate() {
         return "u";
     }
-    
+
 }

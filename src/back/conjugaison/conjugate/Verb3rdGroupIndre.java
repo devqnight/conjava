@@ -7,10 +7,10 @@ public class Verb3rdGroupIndre extends Verb {
         this.init(verb, END);
         this.end = END;
     }
-
+    
     @Override
-    public String ending1stPersonPlural() {
-        return "ignons";
+    protected String endingPlural(){
+        return "ign";
     }
 
     @Override
@@ -19,7 +19,33 @@ public class Verb3rdGroupIndre extends Verb {
     }
 
     @Override
+    protected String ending2ndPersonSingular() {
+        return ending1stPersonSingular();
+    }
+
+    @Override
+    protected String ending3rdPersonSingular() {
+        return "int";
+    }
+
+    //@Override
+    //public String ending1stPersonPlural() {
+    //    return endingPlural() + ENDING_1ST_PERSON_PLURAL;
+    //}
+
+    @Override
+    protected String ending2ndPersonPlural() {
+        return endingPlural() + ENDING_2ND_PERSON_PLURAL;
+    }
+
+    @Override
+    protected String ending3rdPersonPlural() {
+        return endingPlural() + ENDING_3RD_PERSON_PLURAL;
+    }
+
+    @Override
     protected String endingPastParticipate() {
         return "int";
     }
+
 }

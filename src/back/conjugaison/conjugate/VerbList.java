@@ -20,8 +20,24 @@ public class VerbList {
         return loop(verbList, Verb.class.getMethod("conjugate1stPersonSingular", (Class<?>[])null));
     }
 
+    public String conjugate2ndPersonSingular() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+        return loop(verbList, Verb.class.getMethod("conjugate2ndPersonSingular", (Class<?>[])null));
+    }
+
+    public String conjugate3rdPersonSingular() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+        return loop(verbList, Verb.class.getMethod("conjugate3rdPersonSingular", (Class<?>[])null));
+    }
+
     public String conjugate1stPersonPlural() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
         return loop(verbList, Verb.class.getMethod("conjugate1stPersonPlural", (Class<?>[])null));
+    }
+    
+    public String conjugate2ndPersonPlural() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+        return loop(verbList, Verb.class.getMethod("conjugate2ndPersonPlural", (Class<?>[])null));
+    }
+    
+    public String conjugate3rdPersonPlural() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+        return loop(verbList, Verb.class.getMethod("conjugate3rdPersonPlural", (Class<?>[])null));
     }
 
     public String conjugatePresentParticipate() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{

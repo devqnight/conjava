@@ -10,18 +10,42 @@ public class Verb1stGroup extends Verb {
     }
 
     @Override
-    public String ending1stPersonSingular() {
+    protected String endingPlural() {
+        return "";
+    }
+
+    @Override
+    protected String ending1stPersonSingular() {
         return "e";
     }
 
     @Override
-    public String ending1stPersonPlural() {
-        return "ons";
+    protected String ending2ndPersonSingular() {
+        return "es";
     }
 
     @Override
-    public String endingPastParticipate() {
+    protected String ending3rdPersonSingular() {
+        return this.ending1stPersonSingular();
+    }
+
+    //@Override
+    //protected String ending1stPersonPlural() {
+    //    return ENDING_1ST_PERSON_PLURAL;
+    //}
+
+    @Override
+    protected String ending2ndPersonPlural() {
+        return ENDING_2ND_PERSON_PLURAL;
+    }
+
+    @Override
+    protected String ending3rdPersonPlural() {
+        return ENDING_3RD_PERSON_PLURAL;
+    }
+
+    @Override
+    protected String endingPastParticipate() {
         return "é";
     }
-    
 }

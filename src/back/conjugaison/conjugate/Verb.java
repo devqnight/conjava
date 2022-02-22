@@ -1,6 +1,9 @@
 package back.conjugaison.conjugate;
 
-import back.conjugaison.helper.Helper;
+import java.util.HashMap;
+
+import back.conjugaison.utils.Helper;
+import back.conjugaison.utils.Utils;
 
 public abstract class Verb implements IConjugate{
 
@@ -19,16 +22,45 @@ public abstract class Verb implements IConjugate{
         this.setRoot(verb.substring(0, verb.length()-end.length()));
     }
 
-    protected abstract String ending1stPersonSingular();
+    /* protected abstract String ending1stPersonSingular();
     protected abstract String ending2ndPersonSingular();
     protected abstract String ending3rdPersonSingular();
     protected abstract String endingPlural();
     //protected abstract String ending1stPersonPlural();
     protected abstract String ending2ndPersonPlural();
     protected abstract String ending3rdPersonPlural();
-    protected abstract String endingPastParticipate();
+    protected abstract String endingPastParticipate(); */
 
-    public String conjugate1stPersonSingular(){
+    protected abstract HashMap<String, String> getPresentMap(String mode);
+    protected abstract HashMap<String, String> getFutureMap(String mode);
+    protected abstract HashMap<String, String> getImperfectMap(String mode);
+    protected abstract HashMap<String, String> getPastPerfectMap(String mode);
+
+    private HashMap<String, String> getMap(String tense, String mode){
+        return switch(tense){
+            case Tense.FUTURE -> getFutureMap(mode);
+            case Tense.IMPERFECT -> getImperfectMap(mode);
+            case Tense.PAST_PERFECT -> getPastPerfectMap(mode);
+            default -> getPresentMap(mode);
+        };
+    }
+
+
+    public String conjugate(String pronoun, String tense, String mode){
+        HashMap<String, String> map = getMap(tense, mode);
+        return Helper.getPronoun(pronoun, mode, root) + root + map.get(pronoun);
+    }
+
+    public String conjugatePronouns(String tense, String mode){
+        String conjugations = "";
+        for(int i = Pronoun.FIRST_SINGULAR; i < Pronoun.THIRD_PLURAL + 1; i++){
+            conjugations += "\n" + conjugate(Utils.getPronoun(i), tense, mode);
+        }
+        return conjugations;
+    }
+
+
+    /* public String conjugate1stPersonSingular(){
         return this.getJe(this.root.charAt(0)) + this.root + this.ending1stPersonSingular();
     }
     public String conjugate2ndPersonSingular(){
@@ -54,7 +86,7 @@ public abstract class Verb implements IConjugate{
 
     public String conjugatePresentParticipate() {
         return "En " + this.root + this.endingPlural() + ENDING_1ST_PERSON_PLURAL.replace("ons", "ant");
-    }
+    } */
 
     public String getRoot() {
         return root;
@@ -66,9 +98,5 @@ public abstract class Verb implements IConjugate{
     
     public String getEnd(){
         return end;
-    }
-
-    private String getJe(char start){
-        return Helper.isVowel(start)? "J'" : "Je ";
     }
 }

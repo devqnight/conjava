@@ -1,7 +1,7 @@
 package back.conjugaison.cor;
 
 import back.conjugaison.conjugate.Verb;
-import back.conjugaison.conjugate.Verb3rdGroupIndre;
+import back.conjugaison.conjugate._3rdgroup.Verb3rdGroupIndre;
 
 public class Verb3rdGroupIndreCOR extends VerbCOR {
     public Verb3rdGroupIndreCOR(VerbCOR next){

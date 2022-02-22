@@ -7,15 +7,9 @@ import java.util.stream.Collectors;
 
 import com.sun.net.httpserver.*;
 
-import back.conjugaison.conjugate.Verb;
-import back.conjugaison.cor.Verb1stGroupCOR;
-import back.conjugaison.cor.Verb2ndGroupCOR;
-import back.conjugaison.cor.Verb3rdGroupAitreCOR;
-import back.conjugaison.cor.Verb3rdGroupEttreCOR;
-import back.conjugaison.cor.Verb3rdGroupIndreCOR;
-import back.conjugaison.cor.Verb3rdGroupOudreCOR;
-import back.conjugaison.cor.VerbCOR;
-import back.conjugaison.cor.VerbParticularGerCOR;
+import back.conjugaison.Conjugator;
+import back.conjugaison.conjugate.Mode;
+import back.conjugaison.utils.Utils;
 
 public class StartServer {
 
@@ -55,14 +49,10 @@ public class StartServer {
   }
 
   private static String conjugate(String stringVerb, String tense) {
-    VerbCOR finder = new Verb2ndGroupCOR(null);
-    finder = new Verb1stGroupCOR(finder);
-    finder = new VerbParticularGerCOR(finder);
-    finder = new Verb3rdGroupAitreCOR(finder);
-    finder = new Verb3rdGroupIndreCOR(finder);
-    finder = new Verb3rdGroupEttreCOR(finder);
-    finder = new Verb3rdGroupOudreCOR(finder);
-    Verb verb = finder.findGroup(stringVerb);
-    return verb.conjugate1stPersonSingular();
+    try{
+        return Conjugator.getInstance().conjugatePronouns(stringVerb, Mode.INDICATIVE, Utils.getTense(Integer.parseInt(tense)));
+    } catch(Exception e){
+        return e.getMessage();
+    }
   }
 }

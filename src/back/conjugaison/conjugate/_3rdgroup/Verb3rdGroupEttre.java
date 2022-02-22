@@ -1,14 +1,15 @@
-package back.conjugaison.conjugate;
+package back.conjugaison.conjugate._3rdgroup;
 
 import java.util.HashMap;
 
+import back.conjugaison.conjugate.Mode;
+import back.conjugaison.conjugate.Verb;
 import back.conjugaison.utils.Utils;
 
-public class Verb2ndGroup extends Verb{
+public class Verb3rdGroupEttre extends Verb{
+    private static final String END = "ettre"; 
 
-    public static final String END = "ir";
-
-    public Verb2ndGroup(String verb) {
+    public Verb3rdGroupEttre(String verb) {
         this.init(verb, END);
         this.end = END;
     }
@@ -16,9 +17,9 @@ public class Verb2ndGroup extends Verb{
     @Override
     protected HashMap<String, String> getPresentMap(String mode) {
         return switch(mode){
-            case Mode.CONDITIONAL -> Utils.conjugHashMap("irais", "irais", "irait", "irions", "iriez", "iraient");
-            case Mode.SUBJONCTIVE -> Utils.conjugHashMap("isse", "isses", "isse", "issions", "issiez", "issent");
-            default -> Utils.conjugHashMap("is", "is", "it", "issons", "issez", "issent");
+            case Mode.CONDITIONAL -> Utils.conjugHashMap("ettrais", "ettrais", "ettrait", "ettrions", "ettriez", "ettraient");
+            case Mode.SUBJONCTIVE -> Utils.conjugHashMap("ette", "ettes", "ette", "ettions", "ettiez", "ettent");
+            default -> Utils.conjugHashMap("ets", "ets", "et", "ettons", "ettez", "ettent");
         };
     }
 
@@ -26,15 +27,15 @@ public class Verb2ndGroup extends Verb{
     protected HashMap<String, String> getFutureMap(String mode) {
         return switch(mode){
             default -> throw new IllegalArgumentException("This tense does not exist for this mode");
-            case Mode.INDICATIVE -> Utils.conjugHashMap("irai", "iras", "ira", "irons", "irez", "iront");
+            case Mode.INDICATIVE -> Utils.conjugHashMap("ettrai", "ettras", "ettra", "ettrons", "ettrez", "ettront");
         };
     }
 
     @Override
     protected HashMap<String, String> getImperfectMap(String mode) {
         return switch(mode){
-            case Mode.SUBJONCTIVE -> Utils.conjugHashMap("isse", "isses", "isse", "issions", "issiez", "issent");
-            case Mode.INDICATIVE -> Utils.conjugHashMap("issais", "issais", "issait", "issions", "issiez", "issaient");
+            case Mode.SUBJONCTIVE -> Utils.conjugHashMap("isse", "isses", "ît", "issions", "issiez", "issent");
+            case Mode.INDICATIVE -> Utils.conjugHashMap("ettais", "ettais", "ettait", "ettions", "ettiez", "ettaient");
             default -> throw new IllegalArgumentException("This tense does not exist for this mode");
         };
     }
@@ -42,29 +43,28 @@ public class Verb2ndGroup extends Verb{
     @Override
     protected HashMap<String, String> getPastPerfectMap(String mode) {
         return switch(mode){
-            case Mode.INDICATIVE -> Utils.conjugHashMap("i", "i", "i", "i", "i", "i");
+            case Mode.INDICATIVE -> Utils.conjugHashMap("is", "is", "is", "is", "is", "is");
             default -> throw new IllegalArgumentException("This tense does not exist for this mode");
         };
     }
-
     /* @Override
     protected String endingPlural(){
-      return "iss";
+        return "ett";
     }
 
     @Override
     protected String ending1stPersonSingular() {
-        return "is";
+        return "ets";
     }
 
     @Override
     protected String ending2ndPersonSingular() {
-        return ending1stPersonSingular();
+        return ending1stPersonSingular(); 
     }
 
     @Override
     protected String ending3rdPersonSingular() {
-        return "it";
+        return "et";
     }
 
     //@Override
@@ -84,8 +84,7 @@ public class Verb2ndGroup extends Verb{
 
     @Override
     protected String endingPastParticipate() {
-        return "i";
+        return "is";
     } */
-
 
 }

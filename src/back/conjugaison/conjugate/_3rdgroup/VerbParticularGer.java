@@ -1,4 +1,6 @@
-package back.conjugaison.conjugate;
+package back.conjugaison.conjugate._3rdgroup;
+
+import back.conjugaison.conjugate.Verb1stGroup;
 
 public class VerbParticularGer extends Verb1stGroup {
 

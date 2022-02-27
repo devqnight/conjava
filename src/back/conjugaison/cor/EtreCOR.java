@@ -1,19 +1,21 @@
 package back.conjugaison.cor;
 
 import back.conjugaison.conjugate.Verb;
-import back.conjugaison.conjugate.groups._3rdgroup.Verb3rdGroupIndre;
+import back.conjugaison.conjugate.groups._3rdgroup.auxiliaries.Etre;
 
-public class Verb3rdGroupIndreCOR extends VerbCOR {
-    public Verb3rdGroupIndreCOR(VerbCOR next){
+public class EtreCOR extends VerbCOR{
+
+    public EtreCOR(VerbCOR next) {
         super(next);
     }
 
     @Override
     protected Verb findGroupExp(String verb) {
         try {
-            return new Verb3rdGroupIndre(verb);
+            return new Etre(verb);
         } catch (Exception e) {
             return null;
         }
     }
+    
 }

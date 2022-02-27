@@ -1,6 +1,6 @@
-package back.conjugaison.conjugate._3rdgroup;
+package back.conjugaison.conjugate.groups._3rdgroup;
 
-import back.conjugaison.conjugate.Verb1stGroup;
+import back.conjugaison.conjugate.groups.Verb1stGroup;
 
 public class VerbParticularGer extends Verb1stGroup {
 
@@ -12,9 +12,4 @@ public class VerbParticularGer extends Verb1stGroup {
             throw new IllegalArgumentException(verb+ " is not a 'ger' verb");
         this.ENDING_1ST_PERSON_PLURAL = "eons";
     }
-
-    //@Override
-    //protected String ending1stPersonPlural() {
-    //    return "eons";
-    //}
 }

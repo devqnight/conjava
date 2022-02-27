@@ -1,6 +1,8 @@
 package back.conjugaison.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import back.conjugaison.conjugate.Pronoun;
 import back.conjugaison.conjugate.Tense;
@@ -39,5 +41,31 @@ public class Utils {
         map.put(Personal.THIRD_PLURAL_STRING, third_plural);
 
         return map;
+    }
+
+    public static HashMap<String, String> conjugHashMap(List<String> conjugations){
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put(Personal.FIRST_SINGULAR_STRING, conjugations.get(0));
+        map.put(Personal.SECOND_SINGULAR_STRING, conjugations.get(1));
+        map.put(Personal.THIRD_SINGULAR_STRING, conjugations.get(2));
+        map.put(Personal.FIRST_PLURAL_STRING, conjugations.get(3));
+        map.put(Personal.SECOND_PLURAL_STRING, conjugations.get(4));
+        map.put(Personal.THIRD_PLURAL_STRING, conjugations.get(5));
+
+        return map;
+    }
+
+    public static List<String> conjugList(String first_singular, String second_singular, String third_singular, String first_plural, String second_plural, String third_plural){
+        List<String> list = new ArrayList<String>();
+
+        list.add(first_singular);
+        list.add(second_singular);
+        list.add(third_singular);
+        list.add(first_plural);
+        list.add(second_plural);
+        list.add(third_plural);
+
+        return list;
     }
 }

@@ -1,22 +1,21 @@
 package back.conjugaison.cor;
 
 import back.conjugaison.conjugate.Verb;
-import back.conjugaison.conjugate.groups.Verb2ndGroup;
+import back.conjugaison.conjugate.groups._3rdgroup.auxiliaries.Avoir;
 
-public class Verb2ndGroupCOR extends VerbCOR{
+public class AvoirCOR extends VerbCOR {
 
-    public Verb2ndGroupCOR(VerbCOR next){
+    public AvoirCOR(VerbCOR next) {
         super(next);
     }
 
     @Override
     protected Verb findGroupExp(String verb) {
         try {
-            return new Verb2ndGroup(verb);
-        } catch (Exception e) {
+            return new Avoir(verb);
+        } catch (Exception e){
             return null;
         }
     }
-
     
 }

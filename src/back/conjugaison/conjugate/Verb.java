@@ -1,7 +1,8 @@
 package back.conjugaison.conjugate;
 
-import java.util.HashMap;
+import java.util.Map;
 
+import back.conjugaison.conjugate.groups._3rdgroup.auxiliaries.Avoir;
 import back.conjugaison.utils.Helper;
 import back.conjugaison.utils.Utils;
 
@@ -22,33 +23,75 @@ public abstract class Verb implements IConjugate{
         this.setRoot(verb.substring(0, verb.length()-end.length()));
     }
 
-    /* protected abstract String ending1stPersonSingular();
-    protected abstract String ending2ndPersonSingular();
-    protected abstract String ending3rdPersonSingular();
-    protected abstract String endingPlural();
-    //protected abstract String ending1stPersonPlural();
-    protected abstract String ending2ndPersonPlural();
-    protected abstract String ending3rdPersonPlural();
-    protected abstract String endingPastParticipate(); */
+    /* protected abstract Map<String, String> getPresentMap(String mode);
+    protected abstract Map<String, String> getFutureMap(String mode);
+    protected abstract Map<String, String> getImperfectMap(String mode);
+    protected abstract Map<String, String> getPastPerfectMap(String mode);
 
-    protected abstract HashMap<String, String> getPresentMap(String mode);
-    protected abstract HashMap<String, String> getFutureMap(String mode);
-    protected abstract HashMap<String, String> getImperfectMap(String mode);
-    protected abstract HashMap<String, String> getPastPerfectMap(String mode);
-
-    private HashMap<String, String> getMap(String tense, String mode){
+    private Map<String, String> getTenseMap(String tense, String mode){
         return switch(tense){
             case Tense.FUTURE -> getFutureMap(mode);
             case Tense.IMPERFECT -> getImperfectMap(mode);
             case Tense.PAST_PERFECT -> getPastPerfectMap(mode);
             default -> getPresentMap(mode);
         };
+    } */
+    /* public String conjugate(String pronoun, String tense, String mode){
+        Map<String, String> map = getTenseMap(tense, mode);
+        String verb = root + map.get(pronoun);
+        if(tense.equals(Tense.PAST_PERFECT)){
+            return new Avoir("avoir").conjugate(pronoun, Tense.PRESENT, Mode.INDICATIVE) + " " + verb;
+        }
+        return Helper.getPronoun(pronoun, mode, verb) +verb;
+    } */
+
+    protected abstract Map<String, String> getIndicativeMap(String tense);
+    protected abstract Map<String, String> getConditionalMap(String tense);
+    protected abstract Map<String, String> getSubjonctiveMap(String tense);
+
+    private Map<String, String> getModeMap(String mode, String tense){
+        return switch(mode){
+            case Mode.INDICATIVE -> getIndicativeMap(tense);
+            case Mode.CONDITIONAL -> getConditionalMap(tense);
+            case Mode.SUBJONCTIVE -> getSubjonctiveMap(tense);
+            default -> throw new IllegalArgumentException("Mode " + mode + " does not exist");
+        };
     }
 
+    private String conjugateParticipate(String pronoun, String tense, String mode, String verb){
+        return new Avoir("avoir").conjugate(pronoun, tense, mode) + " " + verb;
+    }
+
+    /* private String checkParticipate(String pronoun, String tense, String mode, String verb, String tense0_0, String tense0_1, String tense1_0, String tense1_1){
+        if(tense.equals(tense0_0))
+            return conjugateParticipate(pronoun, tense0_1, mode, verb);
+        if(tense.equals(tense1_0))
+            return conjugateParticipate(pronoun, tense1_1, mode, verb);
+        return null;
+    } */
 
     public String conjugate(String pronoun, String tense, String mode){
-        HashMap<String, String> map = getMap(tense, mode);
-        return Helper.getPronoun(pronoun, mode, root) + root + map.get(pronoun);
+        Map<String, String> map = getModeMap(mode, tense);
+        String verb = root + map.get(pronoun);
+        if(mode.equals(Mode.INDICATIVE)){
+            if(tense.equals(Tense.IndicativeTenses.PAST_PERFECT))
+                return conjugateParticipate(pronoun, Tense.IndicativeTenses.PRESENT, Mode.INDICATIVE, verb);
+            if(tense.equals(Tense.IndicativeTenses.PAST_FUTURE))
+                return conjugateParticipate(pronoun, Tense.IndicativeTenses.FUTURE_SIMPLE, Mode.INDICATIVE, verb);
+        }
+        if(mode.equals(Mode.SUBJONCTIVE)){
+            if(tense.equals(Tense.SubjonctiveTenses.PAST))
+                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.PRESENT, Mode.SUBJONCTIVE, verb);
+            if(tense.equals(Tense.SubjonctiveTenses.PLUPERFECT))
+                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.IMPERFECT, Mode.SUBJONCTIVE, verb);
+        }
+        if(mode.equals(Mode.CONDITIONAL)){
+            if(tense.equals(Tense.ConditionalTenses.PAST_1))
+                return conjugateParticipate(pronoun, Tense.ConditionalTenses.PRESENT, Mode.CONDITIONAL, verb);
+            if(tense.equals(Tense.ConditionalTenses.PAST_2))
+                return conjugateParticipate(pronoun, Tense.ConditionalTenses.PRESENT, Mode.CONDITIONAL, verb);
+        }
+        return Helper.getPronoun(pronoun, mode, verb) +verb;
     }
 
     public String conjugatePronouns(String tense, String mode){
@@ -58,35 +101,6 @@ public abstract class Verb implements IConjugate{
         }
         return conjugations;
     }
-
-
-    /* public String conjugate1stPersonSingular(){
-        return this.getJe(this.root.charAt(0)) + this.root + this.ending1stPersonSingular();
-    }
-    public String conjugate2ndPersonSingular(){
-        return "Tu " + this.root + this.ending2ndPersonSingular();
-    }
-    public String conjugate3rdPersonSingular(){
-        return "Il " + this.root + this.ending3rdPersonSingular();
-    }
-
-    public String conjugate1stPersonPlural(){
-        return "Nous " + this.root + this.endingPlural() + ENDING_1ST_PERSON_PLURAL;//this.ending1stPersonPlural();
-    }
-    public String conjugate2ndPersonPlural(){
-        return "Vous " + this.root + this.ending2ndPersonPlural();
-    }
-    public String conjugate3rdPersonPlural(){
-        return "Ils " + this.root + this.ending3rdPersonPlural();
-    }
-
-    public String conjugatePastParticipate(){
-        return  this.root + this.endingPastParticipate();
-    }
-
-    public String conjugatePresentParticipate() {
-        return "En " + this.root + this.endingPlural() + ENDING_1ST_PERSON_PLURAL.replace("ons", "ant");
-    } */
 
     public String getRoot() {
         return root;

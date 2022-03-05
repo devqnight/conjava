@@ -41,9 +41,4 @@ public class Conjugator {
         Verb result = finder.findGroup(verb);
         return result.conjugatePronouns(tense, mode);
     }
-
-    public String conjugatePronouns2(String verb, String mode, String tense){
-        Verb result = finder.findGroup(verb);
-        return result.conjugatePronouns(tense, mode);
-    }
 }

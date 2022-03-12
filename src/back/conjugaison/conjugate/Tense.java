@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tense {
+
+  private static final String UTILITY_CLASS = "Utility class";
+
   public static final int PRESENT_INT = 0;
   public static final int IMPERFECT_INT = 1;
   public static final int FUTURE_SIMPLE_INT = 2;
@@ -23,6 +26,11 @@ public class Tense {
   public static final String PAST_PERFECT = "Passé composé";
 
   public class IndicativeTenses {
+
+    private IndicativeTenses() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
+
     public static final String PRESENT = "Présent";
     public static final String IMPERFECT = "Imparfait";
     public static final String FUTURE_SIMPLE = "Futur simple";
@@ -32,6 +40,11 @@ public class Tense {
   }
 
   public class SubjonctiveTenses {
+
+    private SubjonctiveTenses() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
+
     public static final String PRESENT = "Présent";
     public static final String PAST = "Passé";
     public static final String IMPERFECT = "Imparfait";
@@ -39,13 +52,18 @@ public class Tense {
   }
 
   public class ConditionalTenses {
+
+    private ConditionalTenses() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
+
     public static final String PRESENT = "Présent";
     public static final String PAST_1 = "Passé première forme";
     public static final String PAST_2 = "Passé deuxième forme";
   }
 
   public static Map<Integer, String> tenseMap(int mode) {
-    HashMap<Integer, String> map = new HashMap<Integer, String>();
+    HashMap<Integer, String> map = new HashMap<>();
     switch (mode) {
       case Mode.INDICATIVE_INT -> {
         map.put(PRESENT_INT, IndicativeTenses.PRESENT);
@@ -54,20 +72,20 @@ public class Tense {
         map.put(PAST_FUTURE_INT, IndicativeTenses.PAST_FUTURE);
         map.put(PAST_PERFECT_INT, IndicativeTenses.PAST_PERFECT);
         map.put(PAST_SIMPLE_INT, IndicativeTenses.PAST_SIMPLE);
-        break;
       }
       case Mode.SUBJONCTIVE_INT -> {
         map.put(PRESENT_INT, SubjonctiveTenses.PRESENT);
         map.put(PAST_INT, SubjonctiveTenses.PAST);
         map.put(IMPERFECT_INT, SubjonctiveTenses.IMPERFECT);
         map.put(PLUSPERFECT_INT, SubjonctiveTenses.PLUSPERFECT);
-        break;
       }
       case Mode.CONDITIONAL_INT -> {
         map.put(PRESENT_INT, ConditionalTenses.PRESENT);
         map.put(PAST_1_INT, ConditionalTenses.PAST_1);
         map.put(PAST_2_INT, ConditionalTenses.PAST_2);
-        break;
+      }
+      default -> {
+        throw new IllegalArgumentException("Mode inconnu");
       }
     }
     return map;

@@ -1,10 +1,15 @@
 package back.conjugaison.conjugate;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Mode {
+
+    private Mode() {
+      throw new IllegalStateException("Utility class");
+    }
 
     public static final int INDICATIVE_INT = 0;
     public static final int CONDITIONAL_INT = 1;
@@ -14,8 +19,8 @@ public class Mode {
     public static final String CONDITIONAL = "Conditionnel";
     public static final String SUBJONCTIVE = "Subjonctif";
 
-    public static HashMap<Integer, String> modeHashMap() {
-        HashMap<Integer, String> map = new HashMap<Integer, String>();
+    public static Map<Integer, String> modeMap() {
+        HashMap<Integer, String> map = new HashMap<>();
         map.put(INDICATIVE_INT, INDICATIVE);
         map.put(CONDITIONAL_INT, CONDITIONAL);
         map.put(SUBJONCTIVE_INT, SUBJONCTIVE);
@@ -23,18 +28,13 @@ public class Mode {
     }
 
     public static List<String> getTenseMap(String tense, Map<String, List<String>> tenseConjugations){
-        for(String key : tenseConjugations.keySet())
-            if(key.equals(tense))
-                return tenseConjugations.get(key);
-        return null;
+        for(Map.Entry<String, List<String>> entry : tenseConjugations.entrySet())
+            if(entry.getKey().equals(tense))
+                return tenseConjugations.get(entry.getKey());
+        return Collections.emptyList();
     }
 
-    public static String getMode(String mode){
-      return switch (mode) {
-        case "Indicatif" -> INDICATIVE;
-        case "Conditionnel" -> CONDITIONAL;
-        case "Subjonctif" -> SUBJONCTIVE;
-        default -> INDICATIVE;
-      };
+    public static String getMode(int mode){
+        return modeMap().get(mode);
     }
 }

@@ -3,6 +3,7 @@ package back.conjugaison.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import back.conjugaison.conjugate.Pronoun;
 import back.conjugaison.conjugate.Tense;
@@ -21,6 +22,9 @@ public class Utils {
         };
     }
 
+    /**
+     * @deprecated
+     */
     public static String getTense(int tense){
         return switch(tense){
             case Tense.FUTURE_SIMPLE_INT -> Tense.FUTURE;
@@ -30,8 +34,8 @@ public class Utils {
         };
     }
 
-    public static HashMap<String, String> conjugHashMap(String first_singular, String second_singular, String third_singular, String first_plural, String second_plural, String third_plural){
-        HashMap<String, String> map = new HashMap<String, String>();
+    public static Map<String, String> conjugHashMap(String first_singular, String second_singular, String third_singular, String first_plural, String second_plural, String third_plural){
+        HashMap<String, String> map = new HashMap<>();
 
         map.put(Personal.FIRST_SINGULAR_STRING, first_singular);
         map.put(Personal.SECOND_SINGULAR_STRING, second_singular);
@@ -43,8 +47,8 @@ public class Utils {
         return map;
     }
 
-    public static HashMap<String, String> conjugHashMap(List<String> conjugations){
-        HashMap<String, String> map = new HashMap<String, String>();
+    public static Map<String, String> conjugHashMap(List<String> conjugations){
+        HashMap<String, String> map = new HashMap<>();
 
         map.put(Personal.FIRST_SINGULAR_STRING, conjugations.get(0));
         map.put(Personal.SECOND_SINGULAR_STRING, conjugations.get(1));
@@ -57,7 +61,7 @@ public class Utils {
     }
 
     public static List<String> conjugList(String first_singular, String second_singular, String third_singular, String first_plural, String second_plural, String third_plural){
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
 
         list.add(first_singular);
         list.add(second_singular);

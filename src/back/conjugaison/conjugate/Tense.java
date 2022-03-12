@@ -1,6 +1,7 @@
 package back.conjugaison.conjugate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Tense {
   public static final int PRESENT_INT = 0;
@@ -43,7 +44,7 @@ public class Tense {
     public static final String PAST_2 = "Passé deuxième forme";
   }
 
-  public static HashMap<Integer, String> tenseHashMap(int mode) {
+  public static Map<Integer, String> tenseMap(int mode) {
     HashMap<Integer, String> map = new HashMap<Integer, String>();
     switch (mode) {
       case Mode.INDICATIVE_INT -> {

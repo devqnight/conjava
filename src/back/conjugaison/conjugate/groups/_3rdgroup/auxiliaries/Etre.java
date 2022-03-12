@@ -19,8 +19,8 @@ public class Etre extends Verb{
     }   
     
     @Override
-    protected HashMap<String, String> getIndicativeMap(String tense) {
-        Map<String, List<String>> tenseConjugations = new HashMap<String, List<String>>();
+    protected Map<String, String> getIndicativeMap(String tense) {
+        Map<String, List<String>> tenseConjugations = new HashMap<>();
 
         tenseConjugations.put(Tense.IndicativeTenses.PRESENT, Utils.conjugList("suis", "es", "est", "sommes", "êtes", "sont"));
         tenseConjugations.put(Tense.IndicativeTenses.FUTURE_SIMPLE, Utils.conjugList("serai", "seras", "sera", "serons", "serez", "seront"));
@@ -33,7 +33,7 @@ public class Etre extends Verb{
     }
 
     @Override
-    protected HashMap<String, String> getConditionalMap(String tense) {
+    protected Map<String, String> getConditionalMap(String tense) {
         Map<String, List<String>> tenseConjugations = new HashMap<String, List<String>>();
 
         tenseConjugations.put(Tense.ConditionalTenses.PRESENT, Utils.conjugList("serais", "serais", "serait", "serions", "seriez", "seraient"));
@@ -44,7 +44,7 @@ public class Etre extends Verb{
     }
 
     @Override
-    protected HashMap<String, String> getSubjonctiveMap(String tense) {
+    protected Map<String, String> getSubjonctiveMap(String tense) {
         Map<String, List<String>> tenseConjugations = new HashMap<String, List<String>>();
 
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("sois", "sois", "sois", "soyons", "soyez", "soient"));

@@ -84,7 +84,7 @@ public class Verb2ndGroup extends Verb{
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("isse", "isses", "isse", "issions", "issiez", "issent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("isse", "isses", "isse", "issions", "issiez", "issent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("i", "i", "i", "i", "i", "i"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("i", "i", "i", "i", "i", "i"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("i", "i", "i", "i", "i", "i"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

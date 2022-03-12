@@ -83,7 +83,7 @@ public class Verb3rdGroupIndre extends Verb {
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("igne", "ignes", "igne", "ignions", "igniez", "ignent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("ignisse", "ignisses", "ignît", "ignions", "igniez", "ignent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("int", "int", "int", "int", "int", "int"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("int", "int", "int", "int", "int", "int"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("int", "int", "int", "int", "int", "int"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

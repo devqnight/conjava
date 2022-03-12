@@ -50,7 +50,7 @@ public class Avoir extends Verb {
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("aie", "aies", "ait", "ayons", "ayez", "aient"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("eusse", "eusses", "eût", "eussions", "eussiez", "eussent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("eu", "eu", "eu", "eu", "eu", "eu"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("eu", "eu", "eu", "eu", "eu", "eu"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("eu", "eu", "eu", "eu", "eu", "eu"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

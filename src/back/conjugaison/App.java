@@ -44,7 +44,7 @@ public class App {
                 System.out.println(conjug.conjugatePronouns(verb, Mode.SUBJONCTIVE, Tense.SubjonctiveTenses.PRESENT));
                 System.out.println(conjug.conjugatePronouns(verb, Mode.SUBJONCTIVE, Tense.SubjonctiveTenses.IMPERFECT));
                 System.out.println(conjug.conjugatePronouns(verb, Mode.SUBJONCTIVE, Tense.SubjonctiveTenses.PAST));
-                System.out.println(conjug.conjugatePronouns(verb, Mode.SUBJONCTIVE, Tense.SubjonctiveTenses.PLUPERFECT));
+                System.out.println(conjug.conjugatePronouns(verb, Mode.SUBJONCTIVE, Tense.SubjonctiveTenses.PLUSPERFECT));
                 System.out.println(conjug.conjugatePronouns(verb, Mode.CONDITIONAL, Tense.ConditionalTenses.PRESENT));
                 System.out.println(conjug.conjugatePronouns(verb, Mode.CONDITIONAL, Tense.ConditionalTenses.PAST_1));
                 System.out.println(conjug.conjugatePronouns(verb, Mode.CONDITIONAL, Tense.ConditionalTenses.PAST_2));

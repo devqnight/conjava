@@ -36,9 +36,10 @@ public class StartServer {
     if (exchange.getRequestMethod().equals("GET")) {
       var path = exchange.getRequestURI().getPath();
       var value = path.split("/");
-      var verb = value[value.length - 2];
-      var tense = value[value.length - 1];
-      var response = conjugate(verb, tense);
+      var verb = value[value.length - 3];
+      var tense = value[value.length - 2];
+      var mode = Mode.getMode(value[value.length - 1]);
+      var response = conjugate(verb, tense, mode);
       exchange.sendResponseHeaders(200, response.length());
       OutputStream os = exchange.getResponseBody();
       os.write(response.getBytes());
@@ -48,9 +49,9 @@ public class StartServer {
     }
   }
 
-  private static String conjugate(String stringVerb, String tense) {
+  private static String conjugate(String stringVerb, String tense, String mode) {
     try{
-        return Conjugator.getInstance().conjugatePronouns(stringVerb, Mode.INDICATIVE, Utils.getTense(Integer.parseInt(tense)));
+        return Conjugator.getInstance().conjugatePronouns(stringVerb, mode, Utils.getTense(Integer.parseInt(tense)));
     } catch(Exception e){
         return e.getMessage();
     }

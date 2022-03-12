@@ -83,7 +83,7 @@ public class Verb3rdGroupEttre extends Verb{
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("ette", "ettes", "ette", "ettions", "ettiez", "ettent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("isse", "isses", "ît", "issions", "issiez", "issent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("is", "is", "is", "is", "is", "is"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("is", "is", "is", "is", "is", "is"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("is", "is", "is", "is", "is", "is"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

@@ -50,7 +50,7 @@ public class Etre extends Verb{
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("sois", "sois", "sois", "soyons", "soyez", "soient"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("fusse", "fusses", "fût", "fussions", "fussiez", "fussent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("été", "été", "été", "été", "été", "été"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("été", "été", "été", "été", "été", "été"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("été", "été", "été", "été", "été", "été"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

@@ -82,7 +82,7 @@ public abstract class Verb implements IConjugate{
         if(mode.equals(Mode.SUBJONCTIVE)){
             if(tense.equals(Tense.SubjonctiveTenses.PAST))
                 return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.PRESENT, Mode.SUBJONCTIVE, verb);
-            if(tense.equals(Tense.SubjonctiveTenses.PLUPERFECT))
+            if(tense.equals(Tense.SubjonctiveTenses.PLUSPERFECT))
                 return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.IMPERFECT, Mode.SUBJONCTIVE, verb);
         }
         if(mode.equals(Mode.CONDITIONAL)){

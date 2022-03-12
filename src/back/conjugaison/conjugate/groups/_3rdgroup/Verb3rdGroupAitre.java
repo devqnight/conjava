@@ -83,7 +83,7 @@ public class Verb3rdGroupAitre extends Verb {
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("aisse", "aisses", "aisse", "aissions", "aissiez", "aissent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("usse", "usses", "ût", "ussions", "ussiez", "ussent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("u", "u", "u", "u", "u", "u"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("u", "u", "u", "u", "u", "u"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("u", "u", "u", "u", "u", "u"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

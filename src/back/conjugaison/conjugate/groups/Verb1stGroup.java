@@ -84,7 +84,7 @@ public class Verb1stGroup extends Verb {
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("e", "es", "e", "ions", "iez", "ent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("asse", "asses", "ât", "assions", "assiez", "assent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("é", "é", "é", "é", "é", "é"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("é", "é", "é", "é", "é", "é"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("é", "é", "é", "é", "é", "é"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

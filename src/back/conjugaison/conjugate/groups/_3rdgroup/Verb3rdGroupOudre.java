@@ -49,7 +49,7 @@ public class Verb3rdGroupOudre extends Verb{
         tenseConjugations.put(Tense.SubjonctiveTenses.PRESENT, Utils.conjugList("olve", "olves", "olve", "olvions", "olviez", "olvent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.IMPERFECT, Utils.conjugList("olusse", "olusses", "olût", "olussions", "olussiez", "olussent"));
         tenseConjugations.put(Tense.SubjonctiveTenses.PAST, Utils.conjugList("olu", "olu", "olu", "olu", "olu", "olu"));
-        tenseConjugations.put(Tense.SubjonctiveTenses.PLUPERFECT, Utils.conjugList("olu", "olu", "olu", "olu", "olu", "olu"));
+        tenseConjugations.put(Tense.SubjonctiveTenses.PLUSPERFECT, Utils.conjugList("olu", "olu", "olu", "olu", "olu", "olu"));
 
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }

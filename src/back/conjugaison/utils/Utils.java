@@ -23,7 +23,7 @@ public class Utils {
 
     public static String getTense(int tense){
         return switch(tense){
-            case Tense.FUTURE_INT -> Tense.FUTURE;
+            case Tense.FUTURE_SIMPLE_INT -> Tense.FUTURE;
             case Tense.IMPERFECT_INT -> Tense.IMPERFECT;
             case Tense.PAST_PERFECT_INT -> Tense.PAST_PERFECT;
             default -> Tense.PRESENT;

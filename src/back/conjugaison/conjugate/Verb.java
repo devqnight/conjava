@@ -8,10 +8,6 @@ import back.conjugaison.utils.Utils;
 
 public abstract class Verb implements IConjugate{
 
-    protected String ENDING_1ST_PERSON_PLURAL = "ons";
-    protected final String ENDING_2ND_PERSON_PLURAL = "ez";
-    protected final String ENDING_3RD_PERSON_PLURAL = "ent";
-
     private String root;
 
     protected String end = "";
@@ -22,28 +18,6 @@ public abstract class Verb implements IConjugate{
         }
         this.setRoot(verb.substring(0, verb.length()-end.length()));
     }
-
-    /* protected abstract Map<String, String> getPresentMap(String mode);
-    protected abstract Map<String, String> getFutureMap(String mode);
-    protected abstract Map<String, String> getImperfectMap(String mode);
-    protected abstract Map<String, String> getPastPerfectMap(String mode);
-
-    private Map<String, String> getTenseMap(String tense, String mode){
-        return switch(tense){
-            case Tense.FUTURE -> getFutureMap(mode);
-            case Tense.IMPERFECT -> getImperfectMap(mode);
-            case Tense.PAST_PERFECT -> getPastPerfectMap(mode);
-            default -> getPresentMap(mode);
-        };
-    } */
-    /* public String conjugate(String pronoun, String tense, String mode){
-        Map<String, String> map = getTenseMap(tense, mode);
-        String verb = root + map.get(pronoun);
-        if(tense.equals(Tense.PAST_PERFECT)){
-            return new Avoir("avoir").conjugate(pronoun, Tense.PRESENT, Mode.INDICATIVE) + " " + verb;
-        }
-        return Helper.getPronoun(pronoun, mode, verb) +verb;
-    } */
 
     protected abstract Map<String, String> getIndicativeMap(String tense);
     protected abstract Map<String, String> getConditionalMap(String tense);
@@ -58,46 +32,38 @@ public abstract class Verb implements IConjugate{
         };
     }
 
-    private String conjugateParticipate(String pronoun, String tense, String mode, String verb){
-        return new Avoir("avoir").conjugate(pronoun, tense, mode) + " " + verb;
+    private String conjugateParticipate(String pronoun, String tense, String mode, String verb, boolean isAuxiliaryConditional){
+        return new Avoir("avoir").conjugate(pronoun, tense, mode, isAuxiliaryConditional) + " " + verb;
     }
 
-    /* private String checkParticipate(String pronoun, String tense, String mode, String verb, String tense0_0, String tense0_1, String tense1_0, String tense1_1){
-        if(tense.equals(tense0_0))
-            return conjugateParticipate(pronoun, tense0_1, mode, verb);
-        if(tense.equals(tense1_0))
-            return conjugateParticipate(pronoun, tense1_1, mode, verb);
-        return null;
-    } */
-
-    public String conjugate(String pronoun, String tense, String mode){
+    public String conjugate(String pronoun, String tense, String mode, boolean isAuxiliaryConditional){
         Map<String, String> map = getModeMap(mode, tense);
-        String verb = root + map.get(pronoun);
+        String verb = Helper.needsE(this.root, map.get(pronoun));
         if(mode.equals(Mode.INDICATIVE)){
             if(tense.equals(Tense.IndicativeTenses.PAST_PERFECT))
-                return conjugateParticipate(pronoun, Tense.IndicativeTenses.PRESENT, Mode.INDICATIVE, verb);
+                return conjugateParticipate(pronoun, Tense.IndicativeTenses.PRESENT, Mode.INDICATIVE, verb, isAuxiliaryConditional);
             if(tense.equals(Tense.IndicativeTenses.PAST_FUTURE))
-                return conjugateParticipate(pronoun, Tense.IndicativeTenses.FUTURE_SIMPLE, Mode.INDICATIVE, verb);
+                return conjugateParticipate(pronoun, Tense.IndicativeTenses.FUTURE_SIMPLE, Mode.INDICATIVE, verb, isAuxiliaryConditional);
         }
         if(mode.equals(Mode.SUBJONCTIVE)){
             if(tense.equals(Tense.SubjonctiveTenses.PAST))
-                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.PRESENT, Mode.SUBJONCTIVE, verb);
+                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.PRESENT, Mode.SUBJONCTIVE, verb, isAuxiliaryConditional);
             if(tense.equals(Tense.SubjonctiveTenses.PLUSPERFECT))
-                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.IMPERFECT, Mode.SUBJONCTIVE, verb);
+                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.IMPERFECT, Mode.SUBJONCTIVE, verb, isAuxiliaryConditional);
         }
         if(mode.equals(Mode.CONDITIONAL)){
             if(tense.equals(Tense.ConditionalTenses.PAST_1))
-                return conjugateParticipate(pronoun, Tense.ConditionalTenses.PRESENT, Mode.CONDITIONAL, verb);
+                return conjugateParticipate(pronoun, Tense.ConditionalTenses.PRESENT, Mode.CONDITIONAL, verb, isAuxiliaryConditional);
             if(tense.equals(Tense.ConditionalTenses.PAST_2))
-                return conjugateParticipate(pronoun, Tense.ConditionalTenses.PRESENT, Mode.CONDITIONAL, verb);
+                return conjugateParticipate(pronoun, Tense.SubjonctiveTenses.IMPERFECT, Mode.SUBJONCTIVE, verb, true);
         }
-        return Helper.getPronoun(pronoun, mode, verb) +verb;
+        return Helper.getPronoun(pronoun, mode, verb, isAuxiliaryConditional) +verb;
     }
 
     public String conjugatePronouns(String tense, String mode){
         String conjugations = "";
         for(int i = Pronoun.FIRST_SINGULAR; i < Pronoun.THIRD_PLURAL + 1; i++){
-            conjugations += "\n" + conjugate(Utils.getPronoun(i), tense, mode);
+            conjugations += "\n" + conjugate(Utils.getPronoun(i), tense, mode, false);
         }
         return conjugations;
     }

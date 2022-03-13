@@ -89,6 +89,7 @@ public class StartServer {
     try {
       return Conjugator.getInstance().conjugatePronouns(stringVerb, mode, tense);
     } catch (Exception e) {
+      e.printStackTrace();
       return e.getMessage();
     }
   }

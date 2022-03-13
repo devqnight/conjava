@@ -89,5 +89,4 @@ public class Verb2ndGroup extends Verb{
         return Utils.conjugHashMap(Mode.getTenseMap(tense, tenseConjugations));
     }
 
-
 }

@@ -1,10 +1,20 @@
 package back.conjugaison.utils;
 
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import back.conjugaison.conjugate.Mode;
 import back.conjugaison.conjugate.Pronoun;
 
 public class Helper {
+
     private static String VOWELS = "AÀÁÂÃÄÅĀĂĄǺȀȂẠẢẤẦẨẪẬẮẰẲẴẶḀÆǼEȄȆḔḖḘḚḜẸẺẼẾỀỂỄỆĒĔĖĘĚÈÉÊËIȈȊḬḮỈỊĨĪĬĮİÌÍÎÏĲOŒØǾȌȎṌṎṐṒỌỎỐỒỔỖỘỚỜỞỠỢŌÒÓŎŐÔÕÖUŨŪŬŮŰŲÙÚÛÜȔȖṲṴṶṸṺỤỦỨỪỬỮỰYẙỲỴỶỸŶŸÝ";
+   
+    private Helper() {
+        throw new IllegalStateException("Utility class");
+    }
+    
     public static boolean isVowel(char c){
         return VOWELS.indexOf(Character.toUpperCase(c)) >= 0;
     }
@@ -21,5 +31,15 @@ public class Helper {
             pr = pr.toLowerCase();
         }
         return  start + pr;
+    }
+
+    public static String convertToJson(Map<Integer, String> map){
+      ObjectMapper mapper = new ObjectMapper();
+      try {
+        return mapper.writeValueAsString(map);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return "";
     }
 }

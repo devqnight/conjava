@@ -12,12 +12,16 @@ import com.sun.net.httpserver.*;
 import back.conjugaison.Conjugator;
 import back.conjugaison.conjugate.Mode;
 import back.conjugaison.conjugate.Tense;
+import back.conjugaison.utils.Helper;
 import back.conjugaison.utils.Utils;
 
 public class StartServer {
 
   public static void main(String[] args) {
     runServer();
+    var map = Mode.modeMap();
+    var response = Helper.convertToJson(map);
+    System.out.println(response);
   }
 
   private static void runServer() {
@@ -59,8 +63,12 @@ public class StartServer {
       var path = exchange.getRequestURI().getPath();
       var value = path.split("/");
       var tenseInt = value[value.length - 1];
-      var response = Tense.tenseMap(Integer.parseInt(tenseInt));
-      // TODO : add a json serializer
+      var map = Tense.tenseMap(Integer.parseInt(tenseInt));
+      var response = Helper.convertToJson(map);
+      exchange.sendResponseHeaders(200, response.length());
+      OutputStream os = exchange.getResponseBody();
+      os.write(response.getBytes());
+      os.flush();
     } else {
       exchange.sendResponseHeaders(418, 0);
     }
@@ -68,8 +76,13 @@ public class StartServer {
 
   private static void getModeMap(HttpExchange exchange) throws IOException {
     if (exchange.getRequestMethod().equals("GET")) {
-      var response = Mode.modeMap();
-      // TODO : add a json serializer
+      var map = Mode.modeMap();
+      var response = Helper.convertToJson(map);
+      System.out.println(response);
+      exchange.sendResponseHeaders(200, response.length());
+      OutputStream os = exchange.getResponseBody();
+      os.write(response.getBytes());
+      os.flush();
     } else {
       exchange.sendResponseHeaders(418, 0);
     }

@@ -19,9 +19,6 @@ public class StartServer {
 
   public static void main(String[] args) {
     runServer();
-    var map = Mode.modeMap();
-    var response = Helper.convertToJson(map);
-    System.out.println(response);
   }
 
   private static void runServer() {
@@ -91,7 +88,7 @@ public class StartServer {
 
   private static String conjugate(String stringVerb, String tense, String mode) {
     try {
-      return Conjugator.getInstance().conjugatePronouns(stringVerb, mode, Utils.getTense(Integer.parseInt(tense)));
+      return Conjugator.getInstance().conjugatePronouns(stringVerb, mode, tense);
     } catch (Exception e) {
       return e.getMessage();
     }

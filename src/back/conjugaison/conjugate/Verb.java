@@ -8,6 +8,10 @@ import back.conjugaison.utils.Utils;
 
 public abstract class Verb implements IConjugate{
 
+    protected String ENDING_1ST_PERSON_PLURAL = "ons";
+    protected final String ENDING_2ND_PERSON_PLURAL = "ez";
+    protected final String ENDING_3RD_PERSON_PLURAL = "ent";
+
     private String root;
 
     protected String end = "";

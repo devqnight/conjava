@@ -97,9 +97,17 @@ public class ConnectionPage extends JDialog implements ActionListener{
         if(valid){
             urlErrorLabel.setVisible(false);
             portErrorLabel.setVisible(false);
-            ConnectionData.getInstance().setString(urlField.getText().trim());
-            ConnectionData.getInstance().setPort(Integer.parseInt(portField.getText().trim()));
-            setVisible(false);
+            //connectErrorLabel.setVisible(false);
+            if(initConnection())
+              setVisible(false);
+            //connectErrorLabel.setVisible(true);
         }
+    }
+
+    private boolean initConnection(){
+      ConnectionData.getInstance().setString(urlField.getText().trim());
+      ConnectionData.getInstance().setPort(Integer.parseInt(portField.getText().trim()));
+      //String jsonModes = 
+      return false;
     }
 }

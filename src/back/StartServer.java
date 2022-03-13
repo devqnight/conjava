@@ -41,15 +41,17 @@ public class StartServer {
     });
     if (exchange.getRequestMethod().equals("GET")) {
       var path = exchange.getRequestURI().getPath();
+      exchange.getRequestBody();
       var value = path.split("/");
       var verb = value[value.length - 3];
-      var tense = value[value.length - 2];
-      var mode = Mode.getMode(Integer.parseInt(value[value.length - 1]));
+      int tenseInt = Integer.parseInt(value[value.length - 2]);
+      int modeInt = Integer.parseInt(value[value.length - 1]);
+      String mode = Mode.getMode(modeInt);
+      String tense = Tense.tenseMap(modeInt).get(tenseInt);
       var response = conjugate(verb, tense, mode);
-      exchange.sendResponseHeaders(200, response.length());
-      OutputStream os = exchange.getResponseBody();
-      os.write(response.getBytes());
-      os.flush();
+      exchange.sendResponseHeaders(200, response.getBytes().length);
+      exchange.getResponseBody().write(response.getBytes());
+      exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);
     }
@@ -59,13 +61,12 @@ public class StartServer {
     if (exchange.getRequestMethod().equals("GET")) {
       var path = exchange.getRequestURI().getPath();
       var value = path.split("/");
-      var tenseInt = value[value.length - 1];
-      var map = Tense.tenseMap(Integer.parseInt(tenseInt));
+      var modeInt = value[value.length - 1];
+      var map = Tense.tenseMap(Integer.parseInt(modeInt));
       var response = Helper.convertToJson(map);
-      exchange.sendResponseHeaders(200, response.length());
-      OutputStream os = exchange.getResponseBody();
-      os.write(response.getBytes());
-      os.flush();
+      exchange.sendResponseHeaders(200, response.getBytes().length);
+      exchange.getResponseBody().write(response.getBytes());
+      exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);
     }
@@ -75,11 +76,9 @@ public class StartServer {
     if (exchange.getRequestMethod().equals("GET")) {
       var map = Mode.modeMap();
       var response = Helper.convertToJson(map);
-      System.out.println(response);
-      exchange.sendResponseHeaders(200, response.length());
-      OutputStream os = exchange.getResponseBody();
-      os.write(response.getBytes());
-      os.flush();
+      exchange.sendResponseHeaders(200, response.getBytes().length);
+      exchange.getResponseBody().write(response.getBytes());
+      exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);
     }

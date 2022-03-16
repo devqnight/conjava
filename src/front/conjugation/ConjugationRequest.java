@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 import front.connection.ConnectionData;
+import front.utils.Utils;
 
 public class ConjugationRequest {
 
@@ -16,7 +18,7 @@ public class ConjugationRequest {
         try {
             String urlString = ConnectionData.getInstance().getUrl();
             int port = ConnectionData.getInstance().getPort();
-            URL url = new URL("http://" + urlString + ":" + port + "/conjugate/" + verb + "/0");
+            URL url = new URL("http://" + urlString + ":" + port + "/conjugate/" + verb + "/" + Tense.getInstance().actual + "/" + Mode.getInstance().actual);
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
@@ -54,15 +56,11 @@ public class ConjugationRequest {
             String line;
 
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder content = new StringBuilder();
-            while((line = in.readLine()) != null)
-                content.append(line + "\n");
-            in.close();
+            line = in.readLine();
+            res = line;
             con.disconnect();
-
-            res = content.toString();
       } catch (Exception e){
-        System.out.println(e);
+        return null;
       }
       return res;
     }
@@ -82,16 +80,41 @@ public class ConjugationRequest {
             String line;
 
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder content = new StringBuilder();
-            while((line = in.readLine()) != null)
-                content.append(line + "\n");
+            line = in.readLine();
+            res = line;
             in.close();
             con.disconnect();
-
-            res = content.toString();
       } catch (Exception e){
-        System.out.println(e);
+        return null;
       }
       return res;
+    }
+
+    public static boolean updateTenses(){
+      String[] tense = Tense.getInstance().getTensesStrings(Integer.parseInt(Mode.getInstance().actual));
+      if(tense == null){
+        String jsonTenses = ConjugationRequest.getTenses(Mode.getInstance().actual);
+        if(jsonTenses == null){
+          return false;
+        }
+        Map<String,String> tenses = Utils.getMap(jsonTenses);
+        switch (Mode.getInstance().actual) {
+          case "1":
+            Tense.getInstance().setSubjonctiveTenses(tenses);
+            Tense.getInstance().actual = "0";
+            break;
+          case "2":
+            Tense.getInstance().setConditionalTenses(tenses);
+            Tense.getInstance().actual = "0";
+            break;
+          default:
+            Tense.getInstance().setIndicativeTenses(tenses);
+            Tense.getInstance().actual = "0";
+            break;
+        }
+      } else {
+        Tense.getInstance().actual = "0";
+      }
+      return true;
     }
 }

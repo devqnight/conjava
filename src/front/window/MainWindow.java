@@ -18,6 +18,7 @@ public class MainWindow extends JFrame {
             UIManager.setLookAndFeel(new MetalLookAndFeel());
         }
         ConjugationPage conjugationPage = new ConjugationPage();
+        conjugationPage.setSize(500,300);
         conjugationPage.setVisible(true);
     }
 }

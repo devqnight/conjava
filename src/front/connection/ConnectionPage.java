@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import front.conjugation.ConjugationRequest;
+import front.conjugation.Mode;
+import front.conjugation.Tense;
+import front.utils.Utils;
 
 public class ConnectionPage extends JDialog implements ActionListener{
     private JPanel contentPane;
@@ -26,6 +32,7 @@ public class ConnectionPage extends JDialog implements ActionListener{
 
     private JLabel urlErrorLabel;
     private JLabel portErrorLabel;
+    private JLabel connectErrorLabel;
 
     private JButton connectButton;
 
@@ -79,35 +86,44 @@ public class ConnectionPage extends JDialog implements ActionListener{
         connectButton.addActionListener(this);
 
         contentPane.add(connectButton);
+
+        connectErrorLabel = new JLabel("Erreur de connexion au serveur");
+        contentPane.add(connectErrorLabel);
+        connectErrorLabel.setVisible(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
         boolean valid = true;
         if(portField.getText().trim().equals("") || Integer.parseInt(portField.getText().trim()) == 0){
-            System.out.println("port empty");
             portErrorLabel.setVisible(true);
             valid = false;
         }
         if(urlField.getText().trim().equals("")){
-            System.out.println("url empty");
             urlErrorLabel.setVisible(true);
             valid = false;
         }
         if(valid){
             urlErrorLabel.setVisible(false);
             portErrorLabel.setVisible(false);
-            //connectErrorLabel.setVisible(false);
+            connectErrorLabel.setVisible(false);
             if(initConnection())
               setVisible(false);
-            //connectErrorLabel.setVisible(true);
+            else
+              connectErrorLabel.setVisible(true);
         }
     }
 
     private boolean initConnection(){
       ConnectionData.getInstance().setString(urlField.getText().trim());
       ConnectionData.getInstance().setPort(Integer.parseInt(portField.getText().trim()));
-      //String jsonModes = 
-      return false;
+      String jsonModes = ConjugationRequest.getModes();
+      if(jsonModes == null){
+        return false;
+      }
+      Map<String,String> modes = Utils.getMap(jsonModes);
+      Mode.getInstance().setModes(modes);
+      Mode.getInstance().actual = "0";
+      return ConjugationRequest.updateTenses();
     }
 }

@@ -27,7 +27,7 @@ public class ConjugationPage extends JFrame implements ActionListener{
 
     private JPanel contentPane;
 
-    private JPanel verbSettings;
+    private VerbSettingsPanel verbSettings;
 
     private JTextArea conjugations;
     private JTextField verb;
@@ -42,8 +42,8 @@ public class ConjugationPage extends JFrame implements ActionListener{
         contentPane.setLayout(new FlowLayout());
         setContentPane(contentPane);
 
-        verbSettings = new JPanel();
-        verbSettings.setLayout(new BoxLayout(verbSettings, BoxLayout.Y_AXIS));
+        verbSettings = new VerbSettingsPanel();
+        verbSettings.setLayout(new BoxLayout(verbSettings, BoxLayout.X_AXIS));
         contentPane.add(verbSettings);
 
         verb = new JTextField();

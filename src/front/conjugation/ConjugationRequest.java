@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import front.connection.ConnectionData;
@@ -27,7 +28,7 @@ public class ConjugationRequest {
 
             String line;
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder content = new StringBuilder();
             while((line = in.readLine()) != null)
                 content.append(line + "\n");
@@ -55,7 +56,7 @@ public class ConjugationRequest {
 
             String line;
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             line = in.readLine();
             res = line;
             con.disconnect();
@@ -79,7 +80,7 @@ public class ConjugationRequest {
 
             String line;
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             line = in.readLine();
             res = line;
             in.close();

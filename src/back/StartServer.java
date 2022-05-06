@@ -1,19 +1,16 @@
 package back;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
-import com.formdev.flatlaf.json.Json;
 import com.sun.net.httpserver.*;
 
 import back.conjugaison.Conjugator;
 import back.conjugaison.conjugate.Mode;
 import back.conjugaison.conjugate.Tense;
 import back.conjugaison.utils.Helper;
-import back.conjugaison.utils.Utils;
 
 public class StartServer {
 
@@ -49,8 +46,9 @@ public class StartServer {
       String mode = Mode.getMode(modeInt);
       String tense = Tense.tenseMap(modeInt).get(tenseInt);
       var response = conjugate(verb, tense, mode);
-      exchange.sendResponseHeaders(200, response.getBytes().length);
-      exchange.getResponseBody().write(response.getBytes());
+      byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
+      exchange.sendResponseHeaders(200, bytes.length);
+      exchange.getResponseBody().write(bytes);
       exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);
@@ -64,8 +62,9 @@ public class StartServer {
       var modeInt = value[value.length - 1];
       var map = Tense.tenseMap(Integer.parseInt(modeInt));
       var response = Helper.convertToJson(map);
-      exchange.sendResponseHeaders(200, response.getBytes().length);
-      exchange.getResponseBody().write(response.getBytes());
+      byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
+      exchange.sendResponseHeaders(200, bytes.length);
+      exchange.getResponseBody().write(bytes);
       exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);
@@ -76,8 +75,9 @@ public class StartServer {
     if (exchange.getRequestMethod().equals("GET")) {
       var map = Mode.modeMap();
       var response = Helper.convertToJson(map);
-      exchange.sendResponseHeaders(200, response.getBytes().length);
-      exchange.getResponseBody().write(response.getBytes());
+      byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
+      exchange.sendResponseHeaders(200, bytes.length);
+      exchange.getResponseBody().write(bytes);
       exchange.close();
     } else {
       exchange.sendResponseHeaders(418, 0);

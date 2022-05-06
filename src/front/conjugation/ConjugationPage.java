@@ -1,5 +1,6 @@
 package front.conjugation;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,6 +55,8 @@ public class ConjugationPage extends JFrame implements ActionListener{
         contentPane.add(conjugate);
 
         conjugations = new JTextArea();
+        conjugations.setEditable(false);
+        conjugations.setBackground(Color.white);
         contentPane.add(conjugations);
     }
 
